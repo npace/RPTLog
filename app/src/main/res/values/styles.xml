@@ -42,4 +42,8 @@
         <item name="android:background">?selectableItemBackgroundBorderless</item>
         <item name="android:padding">8dp</item>
     </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:minHeight">56dp</item>
+    </style>
 </resources>

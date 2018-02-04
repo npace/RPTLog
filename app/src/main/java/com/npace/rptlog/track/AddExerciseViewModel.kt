@@ -5,6 +5,7 @@ import com.npace.rptlog.di.DependencyInjection
 import com.npace.rptlog.model.ExerciseRepository
 import com.npace.rptlog.model.entity.Exercise
 import com.npace.rptlog.model.entity.WeightSet
+import com.npace.rptlog.model.entity.WorkoutEntry
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
@@ -14,13 +15,13 @@ import javax.inject.Inject
  */
 class AddExerciseViewModel : ViewModel() {
     companion object {
-        private const val MAX_SETS = 10
+        private const val MAX_SETS = 5
     }
 
     private val workoutSets = mutableListOf(WeightSet(0, 0f))
     private var exercise: Exercise? = null
     private val errorSubject = BehaviorSubject.create<AddExerciseError>()
-    private val successSubject = BehaviorSubject.create<Boolean>()
+    private val successSubject = BehaviorSubject.create<WorkoutEntry>()
 
     @Inject
     lateinit var exerciseRepository: ExerciseRepository
@@ -31,7 +32,7 @@ class AddExerciseViewModel : ViewModel() {
 
     fun exercisesStream(): Observable<List<Exercise>> = exerciseRepository.getAllExercises()
     fun errorStream(): Observable<AddExerciseError> = errorSubject
-    fun successStream(): Observable<Boolean> = successSubject
+    fun successStream(): Observable<WorkoutEntry> = successSubject
     fun getWorkoutSets(): List<WeightSet> = workoutSets
 
     fun save() {
@@ -46,7 +47,7 @@ class AddExerciseViewModel : ViewModel() {
             return
         }
 
-        successSubject.onNext(true)
+        successSubject.onNext(WorkoutEntry(exercise!!, workoutSets))
     }
 
     private var canAddMoreSets: Boolean = true

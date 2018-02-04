@@ -33,7 +33,7 @@
 
         <Button
             android:id="@+id/buttonAdd"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_set"/>

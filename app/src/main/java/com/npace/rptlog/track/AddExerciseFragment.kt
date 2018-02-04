@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_add_exercise.*
  * Created by lubo on 2/4/2018.
  */
 class AddExerciseFragment : BaseFragment() {
-
     private lateinit var viewModel: AddExerciseViewModel
     private lateinit var adapter: ArrayAdapter<Exercise>
 
@@ -76,7 +75,7 @@ class AddExerciseFragment : BaseFragment() {
         })
 
         addSubscription(viewModel.successStream().subscribe {
-            activity!!.onBackPressed()
+            (context as AddEntryCallback).addEntry(it)
         })
 
         viewModel.getWorkoutSets().forEach {

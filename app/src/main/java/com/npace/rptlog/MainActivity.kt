@@ -1,14 +1,21 @@
 package com.npace.rptlog
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.npace.rptlog.di.DependencyInjection
+import com.npace.rptlog.model.entity.WorkoutEntry
+import com.npace.rptlog.track.AddEntryCallback
+import com.npace.rptlog.track.AddExerciseFragment
 import com.npace.rptlog.track.TrackWorkoutFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AddEntryCallback {
+    companion object {
+        private const val TAG_TRACK_WORKOUT = "track"
+        private const val TAG_ADD_EXERCISE = "add exercise"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,18 +24,28 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             DependencyInjection.configureGlobalScope()
-            navigateTo(TrackWorkoutFragment(), false)
+            navigateTo(TrackWorkoutFragment(), TAG_TRACK_WORKOUT, false)
         }
     }
 
+    fun goToAddExercise() {
+        navigateTo(AddExerciseFragment(), TAG_ADD_EXERCISE)
+    }
+
     @SuppressLint("CommitTransaction")
-    fun navigateTo(fragment: Fragment, addToBackStack: Boolean = true) {
+    private fun navigateTo(fragment: Fragment, tag: String, addToBackStack: Boolean = true) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.content, fragment)
+            replace(R.id.content, fragment, tag)
             if (addToBackStack) {
-                addToBackStack(null)
+                addToBackStack(tag)
             }
             commit()
         }
+    }
+
+    override fun addEntry(entry: WorkoutEntry) {
+        supportFragmentManager.popBackStackImmediate()
+        val trackWorkoutFragment = supportFragmentManager.findFragmentByTag(TAG_TRACK_WORKOUT) as TrackWorkoutFragment
+        trackWorkoutFragment.addEntry(entry)
     }
 }
