@@ -1,7 +1,7 @@
 package com.npace.rptlog.track
 
 import android.arch.lifecycle.ViewModel
-import com.npace.rptlog.model.Exercise
+import com.npace.rptlog.model.entity.Exercise
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 

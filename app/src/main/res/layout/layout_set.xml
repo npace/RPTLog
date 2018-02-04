@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:orientation="horizontal"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <EditText
+        android:id="@+id/editTextReps"
+        style="@style/SetInputStyle.Reps"
+        android:hint="@string/reps"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/editTextWeight"
+        style="@style/SetInputStyle.Weight"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/imageViewCopy"
+        style="@style/SetImageView"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_copy"/>
+
+    <ImageView
+        android:id="@+id/imageViewDelete"
+        style="@style/SetImageView"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_close"/>
+</merge>

@@ -1,14 +1,13 @@
 package com.npace.rptlog.track
 
-import android.arch.lifecycle.*
+import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.npace.rptlog.BaseFragment
+import com.npace.rptlog.MainActivity
 import com.npace.rptlog.R
-import com.npace.rptlog.model.Exercise
 import kotlinx.android.synthetic.main.fragment_track.*
 
 /**
@@ -17,8 +16,12 @@ import kotlinx.android.synthetic.main.fragment_track.*
 
 class TrackWorkoutFragment : BaseFragment() {
 
-    private lateinit var viewModel : TrackWorkoutViewModel
-    private lateinit var adapter : ChooseExerciseAdapter
+    lateinit var mainActivity: MainActivity
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mainActivity = activity as MainActivity
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_track, container, false)
@@ -26,42 +29,15 @@ class TrackWorkoutFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TrackWorkoutViewModel::class.java)
 
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.track_workout)
-        setHasOptionsMenu(true)
+        mainActivity.supportActionBar?.title = getString(R.string.track_workout)
 
-        adapter = ChooseExerciseAdapter(onExerciseSelected)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.track_workout, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.add) {
+        buttonAdd.setOnClickListener {
             addExercise()
-            return true
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun addExercise() {
-        drawerLayout.openDrawer(Gravity.END)
-    }
-
-    private val onExerciseSelected : (Exercise) -> Unit = {
-        Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
-        drawerLayout.closeDrawer(Gravity.END)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        addSubscription(viewModel.exerciseListStream()
-                .subscribe({
-                    adapter.setData(it)
-                }))
+        mainActivity.navigateTo(AddExerciseFragment())
     }
 }
