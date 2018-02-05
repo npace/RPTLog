@@ -44,15 +44,17 @@ class AddExerciseFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_exercise, menu)
+        inflater.inflate(R.menu.add, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.save) {
-            viewModel.save()
-            return true
+        return when (item.itemId) {
+            R.id.add -> {
+                viewModel.save()
+                true
+            }
+            else -> false
         }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onStart() {

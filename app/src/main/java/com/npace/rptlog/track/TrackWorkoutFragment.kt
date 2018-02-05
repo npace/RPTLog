@@ -4,15 +4,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import com.npace.rptlog.BaseFragment
 import com.npace.rptlog.MainActivity
 import com.npace.rptlog.R
 import com.npace.rptlog.model.entity.WorkoutEntry
+import com.npace.rptlog.toast
 import kotlinx.android.synthetic.main.fragment_track.*
 import kotlinx.android.synthetic.main.item_footer_add_entry.view.*
 import kotlinx.android.synthetic.main.item_workout_entry.view.*
@@ -39,15 +38,29 @@ class TrackWorkoutFragment : BaseFragment(), AddEntryCallback {
 
         viewModel = ViewModelProviders.of(this).get(TrackWorkoutViewModel::class.java)
 
-        adapter = WorkoutEntryAdapter(viewModel.getWorkoutEntries()) {
-            addExercise()
-        }
+        adapter = WorkoutEntryAdapter(viewModel.getWorkoutEntries()) { mainActivity.goToAddExercise() }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        setHasOptionsMenu(true)
     }
 
-    private fun addExercise() {
-        mainActivity.goToAddExercise()
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+        inflater.inflate(R.menu.save, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.save -> {
+                saveWorkout()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun saveWorkout() {
+        viewModel.saveWorkout()
     }
 
     override fun addEntry(entry: WorkoutEntry) {
