@@ -8,6 +8,7 @@ import com.npace.rptlog.model.entity.WeightSet
 import com.npace.rptlog.model.entity.WorkoutEntry
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 /**
@@ -20,7 +21,7 @@ class AddExerciseViewModel : ViewModel() {
 
     private val workoutSets = mutableListOf(WeightSet(0, 0f))
     private var exercise: Exercise? = null
-    private val errorSubject = BehaviorSubject.create<AddExerciseError>()
+    private val errorSubject = PublishSubject.create<AddExerciseError>()
     private val successSubject = BehaviorSubject.create<WorkoutEntry>()
 
     @Inject
