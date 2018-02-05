@@ -11,4 +11,5 @@ interface WorkoutRepository {
     fun getAllWorkouts() : Observable<List<Workout>>
 
     fun createWorkout(workoutEntries: List<WorkoutEntry>)
+    fun deleteWorkout(workout: Workout)
 }

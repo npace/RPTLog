@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.npace.rptlog.R
 import com.npace.rptlog.di.DependencyInjection
 import com.npace.rptlog.model.entity.WorkoutEntry
+import com.npace.rptlog.ui.history.HistoryFragment
 import com.npace.rptlog.ui.track.AddEntryCallback
 import com.npace.rptlog.ui.track.AddExerciseFragment
 import com.npace.rptlog.ui.track.TrackWorkoutFragment
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AddEntryCallback {
     companion object {
+        private const val TAG_HISTORY = "history"
         private const val TAG_TRACK_WORKOUT = "track"
         private const val TAG_ADD_EXERCISE = "add exercise"
     }
@@ -25,12 +27,16 @@ class MainActivity : AppCompatActivity(), AddEntryCallback {
 
         if (savedInstanceState == null) {
             DependencyInjection.configureGlobalScope()
-            navigateTo(TrackWorkoutFragment(), TAG_TRACK_WORKOUT, false)
+            navigateTo(HistoryFragment(), TAG_HISTORY, false)
         }
     }
 
     fun goToAddExercise() {
         navigateTo(AddExerciseFragment(), TAG_ADD_EXERCISE)
+    }
+
+    fun goToTrackWorkout() {
+        navigateTo(TrackWorkoutFragment(), TAG_TRACK_WORKOUT)
     }
 
     @SuppressLint("CommitTransaction")
