@@ -1,4 +1,4 @@
-package com.npace.rptlog.track
+package com.npace.rptlog.ui.track
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -8,7 +8,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.npace.rptlog.BaseFragment
+import com.npace.rptlog.ui.BaseFragment
 import com.npace.rptlog.R
 import com.npace.rptlog.model.entity.Exercise
 import com.npace.rptlog.model.entity.WeightSet

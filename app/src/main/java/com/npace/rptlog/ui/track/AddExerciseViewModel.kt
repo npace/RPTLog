@@ -1,4 +1,4 @@
-package com.npace.rptlog.track
+package com.npace.rptlog.ui.track
 
 import android.arch.lifecycle.ViewModel
 import com.npace.rptlog.di.DependencyInjection

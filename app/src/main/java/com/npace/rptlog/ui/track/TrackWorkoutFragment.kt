@@ -1,4 +1,4 @@
-package com.npace.rptlog.track
+package com.npace.rptlog.ui.track
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,11 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
-import com.npace.rptlog.BaseFragment
-import com.npace.rptlog.MainActivity
+import com.npace.rptlog.ui.BaseFragment
+import com.npace.rptlog.ui.MainActivity
 import com.npace.rptlog.R
 import com.npace.rptlog.model.entity.WorkoutEntry
-import com.npace.rptlog.toast
 import kotlinx.android.synthetic.main.fragment_track.*
 import kotlinx.android.synthetic.main.item_footer_add_entry.view.*
 import kotlinx.android.synthetic.main.item_workout_entry.view.*

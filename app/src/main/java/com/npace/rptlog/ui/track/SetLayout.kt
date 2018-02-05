@@ -1,4 +1,4 @@
-package com.npace.rptlog.track
+package com.npace.rptlog.ui.track
 
 import android.content.Context
 import android.text.Editable

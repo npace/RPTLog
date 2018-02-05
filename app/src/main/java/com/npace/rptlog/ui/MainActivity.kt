@@ -1,14 +1,15 @@
-package com.npace.rptlog
+package com.npace.rptlog.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.npace.rptlog.R
 import com.npace.rptlog.di.DependencyInjection
 import com.npace.rptlog.model.entity.WorkoutEntry
-import com.npace.rptlog.track.AddEntryCallback
-import com.npace.rptlog.track.AddExerciseFragment
-import com.npace.rptlog.track.TrackWorkoutFragment
+import com.npace.rptlog.ui.track.AddEntryCallback
+import com.npace.rptlog.ui.track.AddExerciseFragment
+import com.npace.rptlog.ui.track.TrackWorkoutFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AddEntryCallback {

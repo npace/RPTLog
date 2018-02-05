@@ -1,4 +1,4 @@
-package com.npace.rptlog.track
+package com.npace.rptlog.ui.track
 
 import com.npace.rptlog.model.entity.WorkoutEntry
 
