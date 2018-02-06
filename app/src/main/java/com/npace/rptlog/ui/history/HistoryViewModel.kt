@@ -5,6 +5,9 @@ import com.npace.rptlog.di.DependencyInjection
 import com.npace.rptlog.model.WorkoutRepository
 import com.npace.rptlog.model.entity.Workout
 import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -18,9 +21,14 @@ class HistoryViewModel : ViewModel() {
     @Inject
     lateinit var workoutRepository: WorkoutRepository
 
-    fun historyStream(): Observable<List<Workout>> = workoutRepository.getAllWorkouts()
+    fun historyStream(): Observable<List<Workout>> =
+            workoutRepository.getAllWorkouts()
+                    .observeOn(AndroidSchedulers.mainThread())
 
     fun delete(workout: Workout) {
-        workoutRepository.deleteWorkout(workout)
+        Single.fromCallable { workoutRepository.deleteWorkout(workout) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
     }
 }

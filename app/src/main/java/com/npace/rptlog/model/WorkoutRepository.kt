@@ -1,7 +1,7 @@
 package com.npace.rptlog.model
 
-import com.npace.rptlog.model.entity.WorkoutEntry
 import com.npace.rptlog.model.entity.Workout
+import com.npace.rptlog.model.entity.WorkoutEntry
 import io.reactivex.Observable
 
 /**

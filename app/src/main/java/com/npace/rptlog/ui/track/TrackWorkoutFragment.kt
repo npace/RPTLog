@@ -7,10 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
-import com.npace.rptlog.ui.BaseFragment
-import com.npace.rptlog.ui.MainActivity
 import com.npace.rptlog.R
 import com.npace.rptlog.model.entity.WorkoutEntry
+import com.npace.rptlog.ui.BaseFragment
+import com.npace.rptlog.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_track.*
 import kotlinx.android.synthetic.main.item_footer_add_entry.view.*
 import kotlinx.android.synthetic.main.item_workout_entry.view.*

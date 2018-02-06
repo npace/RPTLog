@@ -5,15 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 class InMemoryExerciseRepository : ExerciseRepository {
-    private val exerciseListSubject = BehaviorSubject.createDefault<List<Exercise>>(listOf(
-            Exercise("Deadlift"),
-            Exercise("Squat"),
-            Exercise("Bench Press"),
-            Exercise("Overhead Press"),
-            Exercise("Chin-up"),
-            Exercise("Cable Row"),
-            Exercise("Hanging Leg Raise"))
-    )
+    private val exerciseListSubject = BehaviorSubject.createDefault<List<Exercise>>(ExerciseRepository.DEFAULT_EXERCISES.asList())
 
     override fun getAllExercises(): Observable<List<Exercise>> {
         return exerciseListSubject

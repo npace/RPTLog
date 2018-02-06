@@ -8,11 +8,11 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.npace.rptlog.ui.BaseFragment
 import com.npace.rptlog.R
 import com.npace.rptlog.model.entity.Exercise
 import com.npace.rptlog.model.entity.WeightSet
 import com.npace.rptlog.toast
+import com.npace.rptlog.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_add_exercise.*
 
 /**
@@ -32,7 +32,7 @@ class AddExerciseFragment : BaseFragment() {
 
         adapter = Adapter(context)
         spinner.setAdapter(adapter)
-        spinner.setOnItemClickListener { adapterView, view, position, id ->
+        spinner.setOnItemClickListener { _, _, position, _ ->
             val exercise = adapter.getItem(position)
             viewModel.setExercise(exercise)
             spinner.setText(exercise.name, false)

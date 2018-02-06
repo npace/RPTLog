@@ -4,6 +4,9 @@ import android.arch.lifecycle.ViewModel
 import com.npace.rptlog.di.DependencyInjection
 import com.npace.rptlog.model.WorkoutRepository
 import com.npace.rptlog.model.entity.WorkoutEntry
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -26,7 +29,10 @@ class TrackWorkoutViewModel : ViewModel() {
     }
 
     fun saveWorkout() {
-        workoutRepository.createWorkout(workoutEntries)
+        Single.fromCallable { workoutRepository.createWorkout(workoutEntries) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
     }
 
 }

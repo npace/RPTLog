@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), AddEntryCallback {
         setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
-            DependencyInjection.configureGlobalScope()
+            DependencyInjection.configureGlobalScope(this)
             navigateTo(HistoryFragment(), TAG_HISTORY, false)
         }
     }
